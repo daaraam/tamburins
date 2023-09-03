@@ -7,6 +7,7 @@ import ErrorPage from './Page/ErrorPage';
 import Home from './Page/Home';
 import Login from './Page/Login';
 import Shop from './Page/Shop';
+import SignUp from './Page/SignUp';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
 			{ path: '/shop', element: <Shop /> },
 			{ path: '/login', element: <Login /> },
 			{ path: '/account', element: <Account /> },
+			{ path: '/signup', element: <SignUp /> },
 		],
 	},
 ]);

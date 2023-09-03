@@ -18,11 +18,11 @@ const SingleSlide = () => {
 		// 슬라이드 변경 시간
 		speed: 2000,
 		// 자동 재생 유지 시간
-		autoplaySpeed: 4000,
+		autoplaySpeed: 3000,
 		cssEase: 'linear',
 		centerMode: false,
 		slidesToShow: 2,
-		slidesToScroll: 2,
+		slidesToScroll: 1,
 	};
 
 	return (
@@ -60,7 +60,7 @@ const SingleSlide = () => {
 export default SingleSlide;
 
 const Container = styled.div`
-	padding: 0 5rem 5rem 5rem;
+	padding: 0 0 5rem 0;
 `;
 const SlidePage = styled.div`
 	height: max-content;

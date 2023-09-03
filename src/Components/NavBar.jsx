@@ -1,10 +1,13 @@
 import React from 'react';
-import { BsFillBoxSeamFill } from 'react-icons/bs';
+import { BsFillBoxSeamFill, BsPencilSquare } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useAuthContext } from '../Context/AuthContext';
 import logo from '../Image/logo-2.png';
 
 export default function NavBar() {
+	const { user, logOut } = useAuthContext();
+
 	return (
 		<Header className="flex justify-between pl-7 items-center pr-7">
 			<nav className="flex gap-x-5">
@@ -20,9 +23,10 @@ export default function NavBar() {
 					<h3>마이 페이지</h3>
 				</Link>
 				<Link to="/login">
-					<h3>로그인</h3>
+					<h3>{user ? <p onClick={logOut}>로그아웃</p> : '로그인'}</h3>
 				</Link>
-				<BsFillBoxSeamFill />
+				<BsFillBoxSeamFill size={20} cursor="pointer" />
+				<BsPencilSquare size={20} cursor="pointer" />
 			</nav>
 		</Header>
 	);
