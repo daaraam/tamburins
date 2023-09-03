@@ -21,6 +21,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
+console.log(database);
 
 export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
 

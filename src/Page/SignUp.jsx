@@ -23,6 +23,7 @@ export default function SignUp() {
 
 	const [passwordMsg, setPasswordMsg] = useState('');
 	const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+	console.log(isPasswordConfirm);
 
 	const onChangeEmail = e => {
 		setEmail(e.target.value);
@@ -58,6 +59,7 @@ export default function SignUp() {
 			setPassword('');
 			setName('');
 			setCheck('');
+			console.log(createdUser);
 		} catch (error) {
 			let errorMessage = '로그인에 실패 하였습니다.';
 			switch (error.code) {
@@ -80,6 +82,8 @@ export default function SignUp() {
 				case 'auth/internal-error':
 					setErrorMessage('잘못된 요청입니다.');
 					break;
+				default:
+					errorMessage = '알 수 없는 오류가 발생하였습니다.';
 			}
 			return errorMessage;
 		}

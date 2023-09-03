@@ -20,7 +20,7 @@ export function AuthContextProvider({ children }) {
 			setUser(user);
 			navigate('/');
 		});
-	}, []);
+	}, [navigate]);
 
 	return (
 		<AuthContext.Provider
