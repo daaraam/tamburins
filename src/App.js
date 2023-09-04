@@ -10,14 +10,12 @@ import { AuthContextProvider } from './Context/AuthContext';
 export default function App() {
 	const queryClient = new QueryClient();
 	return (
-		<div className="h-full">
-			<AuthContextProvider>
-				<NavBar />
-				<QueryClientProvider client={queryClient}>
-					<Outlet />
-					<FooterDesign />
-				</QueryClientProvider>
-			</AuthContextProvider>
-		</div>
+		<AuthContextProvider>
+			<NavBar />
+			<QueryClientProvider client={queryClient}>
+				<Outlet />
+				<FooterDesign />
+			</QueryClientProvider>
+		</AuthContextProvider>
 	);
 }

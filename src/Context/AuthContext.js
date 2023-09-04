@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { googleLogin, logOut, userStateChange } from '../API/firebase';
 
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-	const [user, setUser] = useState('');
+	const [user, setUser] = useState();
 	const [email, setEmail] = useState('');
 	const [emailMsg, setEmailMsg] = useState('');
 	const [isEmail, setIsEmail] = useState(false);
@@ -14,13 +13,12 @@ export function AuthContextProvider({ children }) {
 	const [check, setCheck] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 
-	const navigate = useNavigate();
 	useEffect(() => {
 		userStateChange(user => {
 			setUser(user);
-			navigate('/');
+			console.log(user);
 		});
-	}, [navigate]);
+	}, []);
 
 	return (
 		<AuthContext.Provider

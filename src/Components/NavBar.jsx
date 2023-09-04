@@ -19,14 +19,12 @@ export default function NavBar() {
 				</Link>
 			</nav>
 			<nav className="flex gap-x-5 items-center">
-				<Link to="/account">
-					<h3>마이 페이지</h3>
-				</Link>
 				<Link to="/login">
-					<h3>{user ? <p onClick={logOut}>로그아웃</p> : '로그인'}</h3>
+					{user && <p onClick={logOut}>로그아웃</p>}
+					{!user && <p>로그인</p>}
 				</Link>
 				<BsFillBoxSeamFill size={20} cursor="pointer" />
-				<BsPencilSquare size={20} cursor="pointer" />
+				<Link to="/new">{user && user.isAdmin && <BsPencilSquare size={20} cursor="pointer" />}</Link>
 			</nav>
 		</Header>
 	);

@@ -8,7 +8,7 @@ import {
 	signInWithPopup,
 	signOut,
 } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
+import { get, getDatabase, ref } from 'firebase/database';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,7 +21,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
-console.log(database);
+
+// 자동로그인 방지
+provider.setCustomParameters({
+	prompt: 'select_account',
+});
 
 export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
 
@@ -35,7 +39,19 @@ export function logOut() {
 
 export function userStateChange(callback) {
 	onAuthStateChanged(auth, async user => {
-		const updatedUser = user;
+		const updatedUser = user ? await adminUser(user) : null;
 		callback(updatedUser);
 	});
+}
+
+function adminUser(user) {
+	return get(ref(database, 'admins')) //
+		.then(snapshot => {
+			if (snapshot.exists()) {
+				const admins = snapshot.val();
+				const isAdmin = admins.includes(user.uid);
+				return { ...user, isAdmin };
+			}
+			return user;
+		});
 }

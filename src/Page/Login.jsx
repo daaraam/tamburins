@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth, googleLogin, signInWithEmailAndPassword } from '../API/firebase';
 import Button from '../Components/Button';
@@ -18,6 +18,7 @@ export default function Login() {
 		errorMessage,
 		setUser,
 	} = useAuthContext();
+	const navigate = useNavigate();
 
 	const onChangeEmail = e => {
 		setEmail(e.target.value);
@@ -36,6 +37,7 @@ export default function Login() {
 	const emailLogin = async () => {
 		try {
 			const userCredential = await signInWithEmailAndPassword(auth, email, password);
+			navigate('/');
 			setUser(userCredential.user);
 		} catch (error) {
 			let errorMessage = '로그인에 실패 하였습니다.';

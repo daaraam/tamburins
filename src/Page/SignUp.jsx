@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { auth, createUserWithEmailAndPassword } from '../API/firebase';
+
+import { useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
 import { useAuthContext } from '../Context/AuthContext';
 import { Input, InputDiv, Page, Title } from './Login';
-
 export default function SignUp() {
+	const navigate = useNavigate();
 	const {
 		email,
 		setEmail,
@@ -41,6 +43,7 @@ export default function SignUp() {
 
 	const onChangePassword = e => {
 		const passwordConfirmCurrent = e.target.value;
+		navigate('/');
 		setCheck(passwordConfirmCurrent);
 		if (password === passwordConfirmCurrent) {
 			setPasswordMsg('');
@@ -88,7 +91,6 @@ export default function SignUp() {
 			return errorMessage;
 		}
 	};
-
 	const SubmitHandler = e => {
 		e.preventDefault();
 		const { email, password } = e.target;
