@@ -3,7 +3,7 @@ import SingleSlide from './SingleSlide';
 
 export default function Home() {
 	return (
-		<div>
+		<div className="px-12">
 			<SingleSlide />
 		</div>
 	);

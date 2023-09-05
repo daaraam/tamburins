@@ -8,7 +8,8 @@ import {
 	signInWithPopup,
 	signOut,
 } from 'firebase/auth';
-import { get, getDatabase, ref } from 'firebase/database';
+import { get, getDatabase, ref, set } from 'firebase/database';
+import uuid from 'react-uuid';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -53,5 +54,26 @@ function adminUser(user) {
 				return { ...user, isAdmin };
 			}
 			return user;
+		});
+}
+
+export async function addNewProducts(product, url) {
+	const id = uuid();
+	set(ref(database, `products/${id}`), {
+		...product,
+		id,
+		price: parseInt(product.price),
+		url,
+		options: product.options.split(','),
+	});
+}
+
+export async function getProducts() {
+	return get(ref(database, 'products')) //
+		.then(snapshot => {
+			if (snapshot.exists()) {
+				return Object.values(snapshot.val());
+			}
+			return [];
 		});
 }

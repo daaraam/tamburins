@@ -6,8 +6,9 @@ import ErrorPage from './Page/ErrorPage';
 import Home from './Page/Home';
 import Login from './Page/Login';
 import NewProducts from './Page/NewProducts';
-import Shop from './Page/Shop';
+import Products from './Page/Products';
 import SignUp from './Page/SignUp';
+import RouteProtector from './RouteProtector';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -18,10 +19,18 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{ index: true, path: '/', element: <Home /> },
-			{ path: '/shop', element: <Shop /> },
+			{ path: '/products', element: <Products /> },
 			{ path: '/login', element: <Login /> },
 			{ path: '/signup', element: <SignUp /> },
-			{ path: '/new', element: <NewProducts /> },
+
+			{
+				path: '/new',
+				element: (
+					<RouteProtector>
+						<NewProducts />
+					</RouteProtector>
+				),
+			},
 		],
 	},
 ]);

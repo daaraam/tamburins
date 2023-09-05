@@ -7,15 +7,15 @@ import FooterDesign from './Components/FooterDesign';
 import NavBar from './Components/NavBar';
 import { AuthContextProvider } from './Context/AuthContext';
 
+const queryClient = new QueryClient();
 export default function App() {
-	const queryClient = new QueryClient();
 	return (
-		<AuthContextProvider>
-			<NavBar />
-			<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
+			<AuthContextProvider>
+				<NavBar />
 				<Outlet />
 				<FooterDesign />
-			</QueryClientProvider>
-		</AuthContextProvider>
+			</AuthContextProvider>
+		</QueryClientProvider>
 	);
 }

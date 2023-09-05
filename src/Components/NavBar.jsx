@@ -14,7 +14,7 @@ export default function NavBar() {
 				<Link to="/">
 					<Img src={logo} alt="logo" />
 				</Link>
-				<Link to="/shop">
+				<Link to="/products">
 					<h3>제품 보기</h3>
 				</Link>
 			</nav>
