@@ -20,7 +20,6 @@
   --color-brand: #8480cf;
   --color-border: #e4e4e4;
   --color-grad: linear-gradient(111deg, #8480cfec 0%, #94bbe9 68%);
-  @apply bg-white;
   overflow-x: hidden;
 }
 
