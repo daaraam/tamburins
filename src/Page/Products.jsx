@@ -7,20 +7,16 @@ import banner from '../Image/banner.jpg';
 
 export default function Products() {
 	const [selectedCategory, setSelectedCategory] = useState(null);
-	const {
-		error,
-		isLoading,
-		data: products,
-	} = useQuery(['products', selectedCategory], () => getProducts(selectedCategory));
+	const { error, data: products } = useQuery(['products', selectedCategory], () => getProducts(selectedCategory));
 
 	return (
 		<div>
 			<img src={banner} alt="banner" />
+
+			{error && <p className="flex justify-center py-3 text-lg text-white bg-red-300">로그인이 필요합니다.</p>}
 			<div className="px-12">
-				{isLoading && <p>loading</p>}
-				{error && <p>err</p>}
-				<CategoryBar products={products} setSelectedCategory={setSelectedCategory} />
-				<ul className="grid grid-cols-1 md:gird-cols-3 lg:grid-cols-4 gap-1 mx-10">
+				<CategoryBar setSelectedCategory={setSelectedCategory} />
+				<ul className="grid grid-cols-1 gap-1 mx-10 md:gird-cols-3 lg:grid-cols-4">
 					{products &&
 						products.map(product => (
 							<ProductCard

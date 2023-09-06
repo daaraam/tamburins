@@ -39,20 +39,20 @@ export default function NewProducts() {
 		setProduct(product => ({ ...product, [name]: value }));
 	};
 	return (
-		<div className="flex justify-center items-center gap-x-10">
-			<div className="flex flex-col">
+		<div className="flex items-center justify-center py-11 gap-x-10">
+			<div className="flex flex-col mb-11">
 				{file ? (
-					<img className="h-96 w-96" src={URL.createObjectURL(file)} alt="product image" />
+					<img className="h-96 w-96" src={URL.createObjectURL(file)} alt="product" />
 				) : (
 					<View>
 						<MdOutlineImagesearchRoller size={50} />
 					</View>
 				)}
-				{success && <p className="flex justify-center text-xl mt-2 bg-slate-200"> {success}</p>}
+				{success && <p className="flex justify-center mt-2 text-xl bg-slate-200"> {success}</p>}
 			</div>
 
-			<form className="flex justify-center items-center flex-col gap-y-3" onSubmit={submitHandler}>
-				<h1 className="font-bold font-serif text-2xl mb-6">NewProducts</h1>
+			<form className="flex flex-col items-center justify-center gap-y-3" onSubmit={submitHandler}>
+				<h1 className="mb-6 font-serif text-2xl font-bold">NewProducts</h1>
 				<Input type="file" accept="img/*" name="file" required onChange={changeHandler} />
 				<Input
 					type="text"
@@ -88,6 +88,14 @@ export default function NewProducts() {
 				/>
 				<Input
 					type="text"
+					placeholder="상세설명"
+					name="info"
+					value={product.info ?? ''}
+					required
+					onChange={changeHandler}
+				/>
+				<Input
+					type="text"
 					placeholder="옵션(콤마로 구분)"
 					name="options"
 					value={product.options ?? ''}
@@ -96,7 +104,7 @@ export default function NewProducts() {
 				/>
 				<Button
 					text={uploading ? '등록중...' : '등록하기'}
-					className="bg-black text-white"
+					className="text-white bg-black"
 					onClick={submitHandler}
 				/>
 			</form>
@@ -106,9 +114,8 @@ export default function NewProducts() {
 
 const View = styled.div`
 	width: 24rem;
-	height: 26rem;
+	height: 31rem;
 	border: 2px solid var(--color-brand);
-	border-style: dotted;
 	display: flex;
 	align-items: center;
 	justify-content: center;

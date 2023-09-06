@@ -13,7 +13,7 @@ export default function CategoryBar({ setSelectedCategory }) {
 	};
 
 	return (
-		<ul className="flex gap-x-2 mt-11 mb-5 justify-center items-center">
+		<ul className="flex items-center justify-center mb-5 gap-x-2 mt-11">
 			{/* <li className="flex flex-col items-center">
 				<Img src={all} alt="logo" />
 				<p className="text-xs">전체보기</p>

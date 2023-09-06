@@ -5,6 +5,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'KBO-Dia-Gothic_bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
 :root {
   --color-black: black;
   --color-white: white;
@@ -18,12 +26,17 @@
 
 body {
   margin: 0;
-  padding: 0;
   width: 100vw;
   height: 100vh;
   font-family: 'KBO-Dia-Gothic_light';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: white;
+  }
+
 }
 
 code {
