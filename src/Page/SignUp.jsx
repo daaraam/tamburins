@@ -117,13 +117,13 @@ export default function SignUp() {
 					<Input type="password" value={check} onChange={onChangePassword} />
 					{passwordMsg}
 				</InputDiv>
-				<InputDiv>
+				{/* <InputDiv>
 					<label className="text-xs">닉네임</label>
 					<Input type="text" value={name} onChange={e => setName(e.target.value)} />
-				</InputDiv>
+				</InputDiv> */}
 			</form>
 			{errorMessage}
-			<Button text={'가입하기'} className="my-3 bg-black text-white" onClick={SubmitHandler} />
+			<Button text={'가입하기'} className="my-3 text-white bg-black" onClick={SubmitHandler} />
 		</Page>
 	);
 }

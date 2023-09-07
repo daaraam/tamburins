@@ -1,17 +1,9 @@
 @font-face {
-  font-family: 'KBO-Dia-Gothic_light';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_light.woff') format('woff');
-  font-weight: 700;
+  font-family: 'GowunDodum-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
 }
-
-@font-face {
-  font-family: 'KBO-Dia-Gothic_bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
 
 :root {
   --color-black: black;
@@ -27,7 +19,7 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  font-family: 'KBO-Dia-Gothic_light';
+  font-family: 'GowunDodum-Regular';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

@@ -1,30 +1,37 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { addOrUpdateToCart } from '../API/firebase';
 import Button from '../Components/Button';
+import { TitleLetter } from '../Components/CartContents';
+import { useAuthContext } from '../Context/AuthContext';
+import { numberWithCommas } from '../Util/numberWithCommas';
 
 export default function ProductsDetail() {
+	const { uid } = useAuthContext();
+
 	const {
 		state: {
-			product: { category, description, title, price, url, info, options },
+			product: { category, description, title, price, url, info, options, id },
 		},
 	} = useLocation();
 	const [selected, setSelected] = useState(options && options[0]);
 
-	const numberWithCommas = price => {
-		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	};
 	const handleSelect = e => {
 		setSelected(e.target.value);
+	};
+	const cartHandler = e => {
+		const product = { category, id, url, title, price, option: selected, quantity: 1 };
+		addOrUpdateToCart(uid, product);
 	};
 
 	return (
 		<div className="flex flex-row justify-center px-10 gap-x-10">
 			<img className="w-2/5" src={url} alt="상품이미지" />
 			<div className="w-2/5 px-5 mt-7">
-				<p className="text-s">{category}</p>
+				<p className="text-xs">{category}</p>
 				<div className="flex items-center justify-between">
-					<Title>{title}</Title>
+					<TitleLetter>{title}</TitleLetter>
 					<p>{numberWithCommas(price)}</p>
 				</div>
 				<p>{description}</p>
@@ -33,7 +40,7 @@ export default function ProductsDetail() {
 					<select className="w-4/5 p-2" value={selected} onChange={handleSelect}>
 						{options && options.map((option, index) => <option key={index}>{option}</option>)}
 					</select>
-					<Button text={'Add to box'} className="w-4/5 mt-10 text-white bg-black " />
+					<Button text={'Add to cart'} className="w-4/5 mt-10 text-white bg-black " onClick={cartHandler} />
 				</div>
 			</div>
 		</div>

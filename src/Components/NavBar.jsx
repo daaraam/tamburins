@@ -1,15 +1,16 @@
 import React from 'react';
-import { BsFillBoxSeamFill, BsPencilSquare } from 'react-icons/bs';
+import { BsPencilSquare } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useAuthContext } from '../Context/AuthContext';
 import logo from '../Image/logo-2.png';
+import CartModal from './CartModal';
 
 export default function NavBar() {
 	const { user, logOut } = useAuthContext();
 
 	return (
-		<Header className="flex justify-between pl-7 items-center pr-7">
+		<Header className="flex items-center justify-between mx-5 px-11">
 			<nav className="flex gap-x-5">
 				<Link to="/">
 					<Img src={logo} alt="logo" />
@@ -18,12 +19,13 @@ export default function NavBar() {
 					<h3>제품 보기</h3>
 				</Link>
 			</nav>
-			<nav className="flex gap-x-5 items-center">
+			<nav className="flex items-center gap-x-5">
 				<Link to="/login">
 					{user && <p onClick={logOut}>로그아웃</p>}
 					{!user && <p>로그인</p>}
 				</Link>
-				<BsFillBoxSeamFill size={20} cursor="pointer" />
+
+				<CartModal />
 				<Link to="/new">{user && user.isAdmin && <BsPencilSquare size={20} cursor="pointer" />}</Link>
 			</nav>
 		</Header>

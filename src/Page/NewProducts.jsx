@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { MdOutlineImagesearchRoller } from 'react-icons/md';
 import styled from 'styled-components';
-import { addNewProducts } from '../API/firebase';
 import { uploadImage } from '../API/uploader';
 import Button from '../Components/Button';
+import useProducts from '../Hooks/useProducts';
 import { Input } from './Login';
 
 export default function NewProducts() {
@@ -11,21 +11,40 @@ export default function NewProducts() {
 	const [file, setFile] = useState();
 	const [uploading, setUploading] = useState(false);
 	const [success, setSuccess] = useState();
+	const { addProduct } = useProducts();
 
 	const submitHandler = e => {
 		e.preventDefault();
 		setUploading(true);
+		// uploadImage(file) //
+		// 	.then(url => {
+		// 		addNewProducts(product, url);
+		// 	})
+		// 	.then(() => {
+		// 		setSuccess('📁제품 등록 완료');
+		// 		setProduct({});
+		// 		setFile('');
+		// 		setTimeout(() => {
+		// 			setSuccess(null);
+		// 		}, 4000);
+		// 	// 	})
+		// 		.finally(() => setUploading(false));
+		// };
 		uploadImage(file) //
 			.then(url => {
-				addNewProducts(product, url);
-			})
-			.then(() => {
-				setSuccess('📁제품 등록 완료');
-				setProduct({});
-				setFile('');
-				setTimeout(() => {
-					setSuccess(null);
-				}, 4000);
+				addProduct.mutate(
+					{ product, url },
+					{
+						onSuccess: () => {
+							setSuccess('📁제품 등록 완료');
+							setProduct({});
+							setFile('');
+							setTimeout(() => {
+								setSuccess(null);
+							}, 4000);
+						},
+					},
+				);
 			})
 			.finally(() => setUploading(false));
 	};

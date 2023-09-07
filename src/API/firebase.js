@@ -8,7 +8,7 @@ import {
 	signInWithPopup,
 	signOut,
 } from 'firebase/auth';
-import { get, getDatabase, ref, set } from 'firebase/database';
+import { get, getDatabase, ref, remove, set } from 'firebase/database';
 import uuid from 'react-uuid';
 
 const firebaseConfig = {
@@ -76,4 +76,21 @@ export async function getProducts() {
 			}
 			return [];
 		});
+}
+
+export async function getCart(userId) {
+	return get(ref(database, `carts/${userId}`)) //
+		.then(snapshot => {
+			const items = snapshot.val() || {};
+			console.log(items);
+			return Object.values(items);
+		});
+}
+
+export async function addOrUpdateToCart(userId, product) {
+	return set(ref(database, `carts/${userId}/${product.id}`), product);
+}
+
+export async function removeFromCart(userId, product) {
+	return remove(ref(database, `carts/${userId}/${product.id}`));
 }

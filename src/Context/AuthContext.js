@@ -16,6 +16,7 @@ export function AuthContextProvider({ children }) {
 	useEffect(() => {
 		userStateChange(user => {
 			setUser(user);
+			console.log(user);
 		});
 	}, []);
 
@@ -23,6 +24,7 @@ export function AuthContextProvider({ children }) {
 		<AuthContext.Provider
 			value={{
 				user,
+				uid: user && user.uid,
 				googleLogin,
 				logOut,
 				email,
