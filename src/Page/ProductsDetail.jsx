@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { addOrUpdateToCart } from '../API/firebase';
 import Button from '../Components/Button';
 import { TitleLetter } from '../Components/CartContents';
-import { useAuthContext } from '../Context/AuthContext';
+import useCarts from '../Hooks/useCarts';
 import { numberWithCommas } from '../Util/numberWithCommas';
 
 export default function ProductsDetail() {
-	const { uid } = useAuthContext();
+	const { addOrUpdateItem } = useCarts();
 
 	const {
 		state: {
@@ -22,7 +21,11 @@ export default function ProductsDetail() {
 	};
 	const cartHandler = e => {
 		const product = { category, id, url, title, price, option: selected, quantity: 1 };
-		addOrUpdateToCart(uid, product);
+		addOrUpdateItem.mutate(product, {
+			onSuccess: () => {
+				alert('추가!');
+			},
+		});
 	};
 
 	return (
@@ -46,11 +49,6 @@ export default function ProductsDetail() {
 		</div>
 	);
 }
-
-export const Title = styled.p`
-	font-family: 'KBO-Dia-Gothic_bold';
-	font-size: 2rem;
-`;
 
 const Info = styled.p`
 	word-spacing: 4px;

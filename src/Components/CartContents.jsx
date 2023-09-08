@@ -1,34 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { addOrUpdateToCart, removeFromCart } from '../API/firebase';
-import { useAuthContext } from '../Context/AuthContext';
+import useCarts from '../Hooks/useCarts';
 import { numberWithCommas } from '../Util/numberWithCommas';
 
 export default function CartContents({ product, product: { url, category, title, price, option, quantity, id } }) {
-	const { uid } = useAuthContext();
-
-	const removeHandler = e => {
-		const product = { category, id, url, title, price, option, quantity };
-		removeFromCart(uid, product);
-		addOrUpdateToCart(uid, product);
-	};
-
+	const { removeItem, addOrUpdateItem } = useCarts();
 	const [optionSelect, setOptionSelect] = useState(quantity);
 
-	//카테고리 드롭박스를 출력할 함수
+	const maxQuantity = 10; // 최대로 허용할 수량
+	const optionValues = Array.from({ length: Math.min(quantity + maxQuantity, maxQuantity) }, (_, index) => index + 1);
+
 	const handleOptionSelect = e => {
 		const { value } = e.target;
 		setOptionSelect(value);
-		addOrUpdateToCart(uid, { ...product, quantity: value });
+		addOrUpdateItem.mutate({ ...product, quantity: value });
 	};
 
-	const optionValues = [];
-	for (let i = quantity; i <= quantity + 10; i++) {
-		optionValues.push(i);
-	}
+	const removeHandler = e => {
+		removeItem.mutate(id);
+	};
 
 	return (
-		<div className="flex items-center justify-center pb-3 gap-11">
+		<ul className="flex items-center justify-center pb-3 gap-11">
 			<img src={url} className="flex justify-center w-32" />
 			<List>
 				<div className="flex justify-between ">
@@ -39,9 +32,9 @@ export default function CartContents({ product, product: { url, category, title,
 				<p className="pt-3">{option}</p>
 				<section className="flex items-center justify-between pt-3">
 					<select className="w-12 border border-zinc-300" value={optionSelect} onChange={handleOptionSelect}>
-						{optionValues.map(value => (
-							<option key={value} value={value}>
-								{value}
+						{optionValues.map(number => (
+							<option key={number} value={number}>
+								{number}
 							</option>
 						))}
 					</select>
@@ -53,7 +46,7 @@ export default function CartContents({ product, product: { url, category, title,
 					</button>
 				</section>
 			</List>
-		</div>
+		</ul>
 	);
 }
 

@@ -1,17 +1,15 @@
 import React from 'react';
 import CartContents from '../Components/CartContents';
 import PriceCard from '../Components/PriceCard';
-import { useAuthContext } from '../Context/AuthContext';
 import useCarts from '../Hooks/useCarts';
 import empty from '../Image/home-4.jpg';
 
 export default function CartPage() {
-	const SHIPPING = 3000;
-	const { uid } = useAuthContext();
-	// const { data: products, error, isLoading } = useQuery(['carts'], () => getCart(uid));
 	const {
-		getCart: { data: products, error, isLoading },
+		CartsQuery: { data: products, error, isLoading },
 	} = useCarts();
+
+	let SHIPPING = 3000;
 
 	const totalPrice = products && products.reduce((prev, cur) => prev + parseInt(cur.price) * cur.quantity, 0);
 
@@ -24,12 +22,7 @@ export default function CartPage() {
 
 			<ul>
 				<li className="flex px-11">{!hasProducts && <img src={empty} alt={empty} />}</li>
-				<li>
-					{products &&
-						products.map(product => (
-							<CartContents key={product.id} product={product} products={products} />
-						))}
-				</li>
+				<li>{products && products.map(product => <CartContents key={product.id} product={product} />)}</li>
 			</ul>
 			<PriceCard totalPrice={totalPrice} SHIPPING={SHIPPING} />
 		</div>
