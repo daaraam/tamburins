@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { numberWithCommas } from '../Util/numberWithCommas';
 import { TitleLetter } from './CartContents';
 
 export default function PriceCard({ totalPrice, SHIPPING }) {
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-full mt-11">
 			<TitleLetter>결제내역</TitleLetter>
@@ -22,7 +25,7 @@ export default function PriceCard({ totalPrice, SHIPPING }) {
 				</List>
 			</Container>
 			<CartButton className="text-white bg-black">주문 계속하기</CartButton>
-			<CartButton>쇼핑 계속하기</CartButton>
+			<CartButton onClick={() => navigate('/products')}>쇼핑 계속하기</CartButton>
 			<div className="my-1 text-xs font-bold text-red-500 py-9">
 				<p>주문일로부터 1-2 영업일 이내 출고됩니다.</p>
 				<p>환경부 고시에 따라, 기본 쇼핑백이 제공되지 않습니다.</p>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { BsPencilSquare } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useAuthContext } from '../Context/AuthContext';
 import logo from '../Image/logo-2.png';
-import CartModal from './CartModal';
+import CartStatus from './CartStatus';
 
 export default function NavBar() {
 	const { user, logOut } = useAuthContext();
-
+	const navigate = useNavigate();
 	return (
 		<Header className="flex items-center justify-between mx-5 px-11">
 			<nav className="flex gap-x-5">
@@ -24,8 +24,12 @@ export default function NavBar() {
 					{user && <p onClick={logOut}>로그아웃</p>}
 					{!user && <p>로그인</p>}
 				</Link>
-
-				<CartModal />
+				<CartStatus
+					onClick={e => {
+						e.preventDefault();
+						navigate('/cart');
+					}}
+				/>
 				<Link to="/new">{user && user.isAdmin && <BsPencilSquare size={20} cursor="pointer" />}</Link>
 			</nav>
 		</Header>

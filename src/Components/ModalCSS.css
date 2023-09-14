@@ -14,13 +14,10 @@
 .modalBody {
     position: absolute;
     width: 300px;
-    height: auto;
-    padding: 40px;
     text-align: center;
-    background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-    inset: 10% 50% 50% 75%;
+    box-shadow: 0 5px 3px 0 rgba(34, 36, 38, 0.15);
+    inset: 20% 0% 50% 40%;
 }
 
 #modalCloseBtn {

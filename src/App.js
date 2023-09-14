@@ -6,15 +6,18 @@ import 'slick-carousel/slick/slick.css';
 import FooterDesign from './Components/FooterDesign';
 import NavBar from './Components/NavBar';
 import { AuthContextProvider } from './Context/AuthContext';
+import ModalProvider from './Context/ModalContext';
 
 const queryClient = new QueryClient();
 export default function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<AuthContextProvider>
-				<NavBar />
-				<Outlet />
-				<FooterDesign />
+				<ModalProvider>
+					<NavBar />
+					<Outlet />
+					<FooterDesign />
+				</ModalProvider>
 			</AuthContextProvider>
 		</QueryClientProvider>
 	);
