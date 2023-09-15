@@ -31,7 +31,6 @@ export default function SignUp() {
 		setEmail(e.target.value);
 		const emailRegex =
 			/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
 		if (!emailRegex.test(email)) {
 			setEmailMsg('이메일 형식으로 입력하세요.');
 			setIsEmail(false);
@@ -43,15 +42,14 @@ export default function SignUp() {
 
 	const onChangePassword = e => {
 		const passwordConfirmCurrent = e.target.value;
-		navigate('/');
 		setCheck(passwordConfirmCurrent);
+
 		if (password === passwordConfirmCurrent) {
 			setPasswordMsg('');
 			setIsPasswordConfirm(true);
 		} else {
 			setPasswordMsg('비밀번호가 일치하지 않습니다.');
 			setIsPasswordConfirm(false);
-			setIsPasswordConfirm('');
 		}
 	};
 
@@ -63,6 +61,8 @@ export default function SignUp() {
 			setName('');
 			setCheck('');
 			console.log(createdUser);
+			navigate('/');
+			alert('회원가입에 성공하였습니다.');
 		} catch (error) {
 			let errorMessage = '로그인에 실패 하였습니다.';
 			switch (error.code) {
@@ -117,10 +117,6 @@ export default function SignUp() {
 					<Input type="password" value={check} onChange={onChangePassword} />
 					{passwordMsg}
 				</InputDiv>
-				{/* <InputDiv>
-					<label className="text-xs">닉네임</label>
-					<Input type="text" value={name} onChange={e => setName(e.target.value)} />
-				</InputDiv> */}
 			</form>
 			{errorMessage}
 			<Button text={'가입하기'} className="my-3 text-white bg-black" onClick={SubmitHandler} />
