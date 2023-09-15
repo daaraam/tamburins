@@ -21,7 +21,7 @@ export default function CartModal({ title, url, cartHandler }) {
 						<GrFormClose />
 					</button>
 					<p className="w-full p-3 bg-white">
-						<img src={url} />
+						<img src={url} alt="cartImg2" />
 						{title}
 					</p>
 

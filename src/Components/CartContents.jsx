@@ -22,7 +22,7 @@ export default function CartContents({ product, product: { url, category, title,
 
 	return (
 		<ul className="flex items-center justify-center pb-3 gap-11">
-			<img src={url} className="flex justify-center w-32" />
+			<img src={url} className="flex justify-center w-32" alt='cartImg'/>
 			<List>
 				<div className="flex justify-between ">
 					<TitleLetter>{title}</TitleLetter>

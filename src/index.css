@@ -5,6 +5,11 @@
   font-style: normal;
 }
 
+::selection {
+  background-color: var(--color-brand);
+  color: white;
+}
+
 :root {
   --color-black: black;
   --color-white: white;
@@ -13,6 +18,7 @@
   --color-border: #e4e4e4;
   --color-grad: linear-gradient(111deg, #8480cfec 0%, #94bbe9 68%);
   overflow-x: hidden;
+  @apply bg-white;
 }
 
 body {
@@ -23,10 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  ::selection {
-    background-color: var(--color-brand);
-    color: white;
-  }
+
 
 }
 
