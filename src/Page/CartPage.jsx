@@ -9,9 +9,8 @@ export default function CartPage() {
 		CartsQuery: { data: products, error, isLoading },
 	} = useCarts();
 
-	let SHIPPING = 3000;
-
 	const totalPrice = products && products.reduce((prev, cur) => prev + parseInt(cur.price) * cur.quantity, 0);
+	let SHIPPING = totalPrice > 30000 ? 0 : 3000;
 
 	if (isLoading) return <p>isLoading</p>;
 	const hasProducts = products && products.length > 0;

@@ -3,21 +3,27 @@ import styled from 'styled-components';
 import blooming from '../Image/blooming.jpg';
 import camo from '../Image/camo.jpg';
 import candle from '../Image/candle.png';
+import all from '../Image/logo-33.jpg';
 import pair from '../Image/pair.jpg';
 import santizer from '../Image/santizer.png';
 import soap from '../Image/soap.png';
 
-export default function CategoryBar({ setSelectedCategory }) {
+export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 	const CategoryHandler = categoryName => {
-		setSelectedCategory(categoryName);
+		setSelectedCategory(categoryName === selectedCategory ? null : categoryName);
 	};
 
 	return (
 		<ul className="flex items-center justify-center mb-5 gap-x-2 mt-11">
-			{/* <li className="flex flex-col items-center">
+			<li
+				className="flex flex-col items-center"
+				onClick={() => {
+					CategoryHandler(null);
+				}}
+			>
 				<Img src={all} alt="logo" />
 				<p className="text-xs">전체보기</p>
-			</li> */}
+			</li>
 			<li
 				className="flex flex-col items-center"
 				onClick={() => {

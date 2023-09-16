@@ -10,21 +10,23 @@ import { numberWithCommas } from '../Util/numberWithCommas';
 export default function ProductsDetail() {
 	const { openModal } = useModal();
 	const { addOrUpdateItem } = useCarts();
+	const [quantity, setQuantity] = useState(1);
 	const {
 		state: {
 			product: { category, description, title, price, url, info, options, id },
 		},
 	} = useLocation();
+	const [selected, setSelected] = useState(options && options[0]);
 
 	const cartHandler = e => {
-		const product = { category, id, url, title, price, description, info, options, quantity: 1 };
+		const product = { category, id, url, title, price, description, info, options, quantity };
 		addOrUpdateItem.mutate(product, {
 			onSuccess: () => {
 				openModal();
+				setQuantity(prevQuantity => prevQuantity + 1);
 			},
 		});
 	};
-	const [selected, setSelected] = useState(options && options[0]);
 
 	return (
 		<div className="flex flex-row justify-center px-10 gap-x-10">
