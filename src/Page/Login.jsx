@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth, googleLogin, signInWithEmailAndPassword } from '../API/firebase';
 import Button from '../Components/Button';
+import MobileButton from '../Components/MoblieButton';
 import { useAuthContext } from '../Context/AuthContext';
+import { IsMobile } from '../Responsive';
 
 export default function Login() {
 	const {
@@ -19,7 +21,7 @@ export default function Login() {
 		setUser,
 	} = useAuthContext();
 	const navigate = useNavigate();
-
+	const isPhone = IsMobile();
 	const onChangeEmail = e => {
 		setEmail(e.target.value);
 		const emailRegex =
@@ -61,30 +63,55 @@ export default function Login() {
 	};
 
 	return (
-		<Page>
-			<form onSubmit={SubmitLoginHandler}>
-				<Title>Login</Title>
+		<>
+			{isPhone ? (
+				<MobilePage>
+					<form onSubmit={SubmitLoginHandler}>
+						<InputDiv>
+							<label className="text-xs">이메일</label>
+							<MobileInput type="text" value={email} onChange={onChangeEmail} />
+							{emailMsg}
+						</InputDiv>
+						<InputDiv>
+							<label className="text-xs">비밀번호</label>
+							<MobileInput type="password" value={password} onChange={e => setPassword(e.target.value)} />
+						</InputDiv>
+						<MobileButton className="my-3 text-white bg-black" text={'로그인'} />
+						{errorMessage}
+						<p className="flex justify-center p-5">OR</p>
+						<Link to="/signup">
+							<MobileButton className="mt-3" text={'신규 회원가입'} />
+						</Link>
+						<MobileButton className="my-3" onClick={googleLogin} text={'구글 로그인'} />
+					</form>
+				</MobilePage>
+			) : (
+				<Page>
+					<form onSubmit={SubmitLoginHandler}>
+						<Title>Login</Title>
 
-				<InputDiv>
-					<label className="text-xs">이메일</label>
-					<Input type="text" value={email} onChange={onChangeEmail} />
-					{emailMsg}
-				</InputDiv>
+						<InputDiv>
+							<label className="text-xs">이메일</label>
+							<Input type="text" value={email} onChange={onChangeEmail} />
+							{emailMsg}
+						</InputDiv>
 
-				<InputDiv>
-					<label className="text-xs">비밀번호</label>
-					<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-				</InputDiv>
+						<InputDiv>
+							<label className="text-xs">비밀번호</label>
+							<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+						</InputDiv>
 
-				<Button className="my-3 text-white bg-black" onClick={SubmitLoginHandler} text={'확인'} />
-				{errorMessage}
-				<p className="flex justify-center p-5">OR</p>
-				<Link to="/signup">
-					<Button className="bg-white" text={'신규 회원가입'} />
-				</Link>
-				<Button className="my-3 bg-white" onClick={googleLogin} text={'구글 로그인'} />
-			</form>
-		</Page>
+						<Button className="my-3 text-white bg-black" onClick={SubmitLoginHandler} text={'로그인'} />
+						{errorMessage}
+						<p className="flex justify-center p-5">OR</p>
+						<Link to="/signup">
+							<Button className="bg-white" text={'신규 회원가입'} />
+						</Link>
+						<Button className="my-3 bg-white" onClick={googleLogin} text={'구글 로그인'} />
+					</form>
+				</Page>
+			)}
+		</>
 	);
 }
 export const Page = styled.div`
@@ -97,9 +124,24 @@ export const Page = styled.div`
 	margin-bottom: 7rem;
 `;
 
+export const MobilePage = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding-top: 3rem;
+`;
+
 export const Title = styled.h1`
 	font-size: 4rem;
 	padding-bottom: 4rem;
+	font-weight: 900;
+	color: var(--color-black);
+`;
+
+export const MobileTitle = styled.h1`
+	font-size: 2rem;
 	font-weight: 900;
 	color: var(--color-black);
 	font-family: serif;
@@ -116,4 +158,10 @@ export const Input = styled.input`
 	border: 1px solid black;
 	width: 30rem;
 	padding: 0.5rem;
+`;
+
+export const MobileInput = styled.input`
+	border: 1px solid black;
+	width: 20rem;
+	padding: 0.2rem;
 `;

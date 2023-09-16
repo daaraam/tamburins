@@ -9,7 +9,7 @@ export default function CartStatus({ onClick }) {
 
 	return (
 		<div className="relative">
-			<ImCart size={20} cursor="pointer" onClick={onClick} />
+			<ImCart size={15} cursor="pointer" onClick={onClick} />
 			{products && <p className="absolute w-5 h-5 font-bold text-center -top-3 -right-4">{products.length}</p>}
 		</div>
 	);

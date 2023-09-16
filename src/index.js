@@ -6,6 +6,7 @@ import CartPage from './Page/CartPage';
 import ErrorPage from './Page/ErrorPage';
 import Home from './Page/Home';
 import Login from './Page/Login';
+import Map from './Page/Map';
 import NewProducts from './Page/NewProducts';
 import Products from './Page/Products';
 import ProductsDetail from './Page/ProductsDetail';
@@ -25,7 +26,15 @@ const router = createBrowserRouter([
 			{ path: '/products/:id', element: <ProductsDetail /> },
 			{ path: '/login', element: <Login /> },
 			{ path: '/signup', element: <SignUp /> },
-			{ path: '/cart', element: <CartPage /> },
+			{ path: '/map', element: <Map /> },
+			{
+				path: '/cart',
+				element: (
+					<RouteProtector>
+						<CartPage />
+					</RouteProtector>
+				),
+			},
 
 			{
 				path: '/new',

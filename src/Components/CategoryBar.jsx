@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import blooming from '../Image/blooming.jpg';
 import camo from '../Image/camo.jpg';
 import candle from '../Image/candle.png';
@@ -7,89 +6,145 @@ import all from '../Image/logo-33.jpg';
 import pair from '../Image/pair.jpg';
 import santizer from '../Image/santizer.png';
 import soap from '../Image/soap.png';
+import { IsMobile } from '../Responsive';
+import CategoryList from './CategoryList';
 
-export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
+export default function CategoryBar({ selectedCategory, setSelectedCategory }) {
 	const CategoryHandler = categoryName => {
 		setSelectedCategory(categoryName === selectedCategory ? null : categoryName);
 	};
 
+	const isPhone = IsMobile();
+
 	return (
-		<ul className="flex items-center justify-center mb-5 gap-x-2 mt-11">
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler(null);
-				}}
-			>
-				<Img src={all} alt="logo" />
-				<p className="text-s">전체보기</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('퍼퓸');
-				}}
-			>
-				<Img src={camo} alt="camo" />
-				<p className="text-s">퍼퓸</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('퍼퓸 밤');
-				}}
-			>
-				<Img src={pair} alt="pair" />
-				<p className="text-s">퍼퓸 밤</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('올팩티브 캔들');
-				}}
-			>
-				<Img src={candle} alt="candle" />
-				<p className="text-s">올팩티브 캔들</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('손 소독제');
-				}}
-			>
-				<Img src={santizer} alt="santizer" />
-				<p className="text-s">손 소독제</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('향 오브젝트');
-				}}
-			>
-				<Img src={blooming} alt="blooming" />
-				<p className="text-s">향 오브젝트</p>
-			</li>
-			<li
-				className="flex flex-col items-center"
-				onClick={() => {
-					CategoryHandler('퍼퓸 비누');
-				}}
-			>
-				<Img src={soap} alt="soap" />
-				<p className="text-s">퍼퓸 비누</p>
-			</li>
-		</ul>
+		<>
+			{isPhone ? (
+				<ul className="flex flex-row-reverse items-center justify-center m-5">
+					<section>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('퍼퓸 비누');
+							}}
+							IMAGE={soap}
+							ALT={'soap'}
+							TEXT={'퍼퓸 비누'}
+						/>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('손 소독제');
+							}}
+							IMAGE={santizer}
+							ALT={'santizer'}
+							TEXT={'손 소독제'}
+						/>{' '}
+					</section>
+					<section>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('퍼퓸 밤');
+							}}
+							IMAGE={pair}
+							ALT={'pair'}
+							TEXT={'퍼퓸 밤'}
+						/>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('올팩티브 캔들');
+							}}
+							IMAGE={candle}
+							ALT={'candle'}
+							TEXT={'캔들'}
+						/>{' '}
+					</section>
+					<section>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('퍼퓸');
+							}}
+							IMAGE={camo}
+							ALT={'camo'}
+							TEXT={'퍼퓸'}
+						/>
+						<CategoryList
+							onClick={() => {
+								CategoryHandler('향 오브젝트');
+							}}
+							IMAGE={blooming}
+							ALT={'blooming'}
+							TEXT={'향 오브젝트'}
+						/>{' '}
+					</section>
+					<section className="mr-5">
+						<CategoryList
+							onClick={() => {
+								CategoryHandler(null);
+							}}
+							IMAGE={all}
+							ALT={'LOGO'}
+							TEXT={'전체보기'}
+						/>
+					</section>
+				</ul>
+			) : (
+				<ul className="flex items-center justify-center mb-5 gap-x-2 mt-11">
+					<CategoryList
+						onClick={() => {
+							CategoryHandler(null);
+						}}
+						IMAGE={all}
+						ALT={'LOGO'}
+						TEXT={'전체보기'}
+					/>
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('퍼퓸');
+						}}
+						IMAGE={camo}
+						ALT={'camo'}
+						TEXT={'퍼퓸'}
+					/>
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('퍼퓸 밤');
+						}}
+						IMAGE={pair}
+						ALT={'pair'}
+						TEXT={'퍼퓸 밤'}
+					/>
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('올팩티브 캔들');
+						}}
+						IMAGE={candle}
+						ALT={'candle'}
+						TEXT={'올팩티브 캔들'}
+					/>{' '}
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('손 소독제');
+						}}
+						IMAGE={santizer}
+						ALT={'santizer'}
+						TEXT={'손 소독제'}
+					/>{' '}
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('향 오브젝트');
+						}}
+						IMAGE={blooming}
+						ALT={'blooming'}
+						TEXT={'향 오브젝트'}
+					/>{' '}
+					<CategoryList
+						onClick={() => {
+							CategoryHandler('퍼퓸 비누');
+						}}
+						IMAGE={soap}
+						ALT={'soap'}
+						TEXT={'퍼퓸 비누'}
+					/>
+				</ul>
+			)}
+		</>
 	);
 }
-
-const Img = styled.img`
-	height: 6rem;
-	width: 6rem;
-	margin: 0.5rem;
-	border-radius: 100%;
-	cursor: pointer;
-	&:hover {
-		border: 1.5px solid black;
-		padding: 0.2rem;
-	}
-`;

@@ -9,7 +9,6 @@ import { numberWithCommas } from '../Util/numberWithCommas';
 
 export default function Products() {
 	const [selectedCategory, setSelectedCategory] = useState(null);
-
 	const {
 		ProductsQuery: { error, data: products },
 	} = useProducts();
@@ -23,7 +22,7 @@ export default function Products() {
 			<div className="px-12">
 				<CategoryBar selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 				{selectedCategory !== '' && (
-					<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+					<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
 						{products &&
 							products.map(product => (
 								<ProductCard
@@ -39,13 +38,13 @@ export default function Products() {
 			<div className="px-12">
 				{selectedCategory === '' ||
 					(selectedCategory === null && (
-						<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+						<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
 							{products &&
 								products.map(product => (
 									<li key={product.id} className="p-3 overflow-hidden rounded-lg cursor-pointer">
 										<p className="flex flex-col items-center justify-center">
 											<img
-												className="w-full mb-3 h-96"
+												className="w-full mb-3 "
 												src={product.url}
 												alt="product_image"
 												onClick={() => {

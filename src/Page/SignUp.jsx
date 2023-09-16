@@ -3,8 +3,10 @@ import { auth, createUserWithEmailAndPassword } from '../API/firebase';
 
 import { useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
+import MobileButton from '../Components/MoblieButton';
 import { useAuthContext } from '../Context/AuthContext';
-import { Input, InputDiv, Page, Title } from './Login';
+import { IsMobile } from '../Responsive';
+import { Input, InputDiv, MobileInput, MobilePage, Page, Title } from './Login';
 export default function SignUp() {
 	const navigate = useNavigate();
 	const {
@@ -96,30 +98,58 @@ export default function SignUp() {
 		const { email, password } = e.target;
 		emailSignUp(email, password);
 	};
+	const isPhone = IsMobile();
 
 	return (
-		<Page>
-			<form onSubmit={SubmitHandler}>
-				<Title>Signup</Title>
-				<InputDiv>
-					<label className="text-xs">이메일</label>
-					<Input type="text" value={email} onChange={onChangeEmail} />
-					{emailMsg}
-				</InputDiv>
+		<>
+			{isPhone ? (
+				<MobilePage>
+					<form onSubmit={SubmitHandler}>
+						<InputDiv>
+							<label className="text-xs">이메일</label>
+							<MobileInput type="text" value={email} onChange={onChangeEmail} />
+							{emailMsg}
+						</InputDiv>
 
-				<InputDiv>
-					<label className="text-xs">비밀번호</label>
-					<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-				</InputDiv>
+						<InputDiv>
+							<label className="text-xs">비밀번호</label>
+							<MobileInput type="password" value={password} onChange={e => setPassword(e.target.value)} />
+						</InputDiv>
 
-				<InputDiv>
-					<label className="text-xs">비밀번호 확인</label>
-					<Input type="password" value={check} onChange={onChangePassword} />
-					{passwordMsg}
-				</InputDiv>
-			</form>
-			{errorMessage}
-			<Button text={'가입하기'} className="my-3 text-white bg-black" onClick={SubmitHandler} />
-		</Page>
+						<InputDiv>
+							<label className="text-xs">비밀번호 확인</label>
+							<MobileInput type="password" value={check} onChange={onChangePassword} />
+							{passwordMsg}
+						</InputDiv>
+						{errorMessage}
+						<MobileButton text={'가입하기'} className="my-3 text-white bg-black" onClick={SubmitHandler} />
+					</form>
+				</MobilePage>
+			) : (
+				<Page>
+					<form onSubmit={SubmitHandler}>
+						<Title>Signup</Title>
+						<InputDiv>
+							<label className="text-xs">이메일</label>
+							<Input type="text" value={email} onChange={onChangeEmail} />
+							{emailMsg}
+						</InputDiv>
+
+						<InputDiv>
+							<label className="text-xs">비밀번호</label>
+							<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+						</InputDiv>
+
+						<InputDiv>
+							<label className="text-xs">비밀번호 확인</label>
+							<Input type="password" value={check} onChange={onChangePassword} />
+							{passwordMsg}
+						</InputDiv>
+						{errorMessage}
+						<Button text={'가입하기'} className="my-3 text-white bg-black" onClick={SubmitHandler} />
+					</form>
+				</Page>
+			)}
+		</>
 	);
 }
