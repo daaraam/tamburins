@@ -10,7 +10,7 @@ export default function NavBar() {
 	const { user, logOut } = useAuthContext();
 	const navigate = useNavigate();
 	return (
-		<Header className="flex items-center justify-between mx-5 px-11">
+		<Header className="flex items-center justify-between px-3 mx-5">
 			<nav className="flex gap-x-5">
 				<Link to="/">
 					<Img src={logo} alt="logo" />

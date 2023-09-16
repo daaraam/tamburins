@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function FooterDesign() {
 	return (
-		<Container className=" p-20 mt-20">
+		<Container>
 			<Footer>
 				<p>
 					(주)탬버린즈 | 사업자등록번호: 111-86-30009 | 대표자: 최수지 | 서울특별시 마포구 어울마당로5길 41 |
@@ -21,11 +21,19 @@ export default function FooterDesign() {
 }
 
 const Container = styled.div`
+	padding: 5rem;
+	margin-top: 5rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background: var(--color-brand);
 	background: var(--color-grad);
+
+	@media (max-width: 768px) {
+		padding: 1rem;
+		background-color: white;
+		color: black;
+	}
 `;
 
 const Footer = styled.div`

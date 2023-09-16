@@ -22,7 +22,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={all} alt="logo" />
-				<p className="text-xs">전체보기</p>
+				<p className="text-s">전체보기</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -31,7 +31,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={camo} alt="camo" />
-				<p className="text-xs">퍼퓸</p>
+				<p className="text-s">퍼퓸</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -40,7 +40,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={pair} alt="pair" />
-				<p className="text-xs">퍼퓸 밤</p>
+				<p className="text-s">퍼퓸 밤</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -49,7 +49,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={candle} alt="candle" />
-				<p className="text-xs">올팩티브 캔들</p>
+				<p className="text-s">올팩티브 캔들</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -58,7 +58,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={santizer} alt="santizer" />
-				<p className="text-xs">손 소독제</p>
+				<p className="text-s">손 소독제</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -67,7 +67,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={blooming} alt="blooming" />
-				<p className="text-xs">향 오브젝트</p>
+				<p className="text-s">향 오브젝트</p>
 			</li>
 			<li
 				className="flex flex-col items-center"
@@ -76,7 +76,7 @@ export default function CategoryBar({ setSelectedCategory, selectedCategory }) {
 				}}
 			>
 				<Img src={soap} alt="soap" />
-				<p className="text-xs">퍼퓸 비누</p>
+				<p className="text-s">퍼퓸 비누</p>
 			</li>
 		</ul>
 	);

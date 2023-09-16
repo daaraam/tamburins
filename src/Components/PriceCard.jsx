@@ -17,14 +17,19 @@ export default function PriceCard({ totalPrice, SHIPPING }) {
 				</List>
 				<List>
 					<label>배송비</label>
-					<Price>{numberWithCommas(SHIPPING)}</Price>
+					<section className="flex items-center justify-end gap-x-5">
+						<p className="text-xs ">3만원 이상 구매 시 무료배송</p>
+						<Price>{numberWithCommas(SHIPPING)}</Price>
+					</section>
 				</List>
 				<List>
 					<label>총 금액</label>
 					<Price>{numberWithCommas(totalPrice + SHIPPING)}</Price>
 				</List>
 			</Container>
-			<CartButton className="text-white bg-black">주문 계속하기</CartButton>
+			<CartButton onClick={() => alert('개발중입니다!')} className="text-white bg-black">
+				주문 계속하기
+			</CartButton>
 			<CartButton onClick={() => navigate('/products')}>쇼핑 계속하기</CartButton>
 			<div className="my-1 text-xs font-bold text-red-500 py-9">
 				<p>주문일로부터 1-2 영업일 이내 출고됩니다.</p>

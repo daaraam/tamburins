@@ -11,19 +11,19 @@ export default function ProductsDetail() {
 	const { openModal } = useModal();
 	const { addOrUpdateItem } = useCarts();
 	const [quantity, setQuantity] = useState(1);
+
 	const {
 		state: {
 			product: { category, description, title, price, url, info, options, id },
 		},
 	} = useLocation();
-	const [selected, setSelected] = useState(options && options[0]);
 
 	const cartHandler = e => {
-		const product = { category, id, url, title, price, description, info, options, quantity };
+		const product = { category, id, url, title, price, description, options, info, quantity: 1 };
 		addOrUpdateItem.mutate(product, {
 			onSuccess: () => {
 				openModal();
-				setQuantity(prevQuantity => prevQuantity + 1);
+				setQuantity(quantity);
 			},
 		});
 	};
@@ -38,17 +38,10 @@ export default function ProductsDetail() {
 					<p>{numberWithCommas(price)}</p>
 				</div>
 				<p>{description}</p>
+				<p className="font-bold">{options}</p>
+
 				<Info className="w-full mt-10 text-ellipsis">{info}</Info>
 				<div className="flex flex-col items-center justify-center pt-10">
-					<select
-						className="w-4/5 p-2"
-						value={selected}
-						onChange={e => {
-							setSelected(e.target.value);
-						}}
-					>
-						{options && options.map((option, index) => <option key={index}>{option}</option>)}
-					</select>
 					<CartModal url={url} title={title} cartHandler={cartHandler} />
 				</div>
 			</div>

@@ -76,13 +76,13 @@ export default function Login() {
 					<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
 				</InputDiv>
 
-				<Button className="bg-black text-white my-3" onClick={SubmitLoginHandler} text={'확인'} />
+				<Button className="my-3 text-white bg-black" onClick={SubmitLoginHandler} text={'확인'} />
 				{errorMessage}
 				<p className="flex justify-center p-5">OR</p>
 				<Link to="/signup">
 					<Button className="bg-white" text={'신규 회원가입'} />
 				</Link>
-				<Button className="bg-white my-3" onClick={googleLogin} text={'구글 로그인'} />
+				<Button className="my-3 bg-white" onClick={googleLogin} text={'구글 로그인'} />
 			</form>
 		</Page>
 	);
@@ -93,8 +93,8 @@ export const Page = styled.div`
 	justify-content: center;
 	align-items: center;
 	row-gap: 2.25rem;
-	margin-top: 2.5rem;
-	margin-bottom: 2.5rem;
+	margin-top: 5rem;
+	margin-bottom: 7rem;
 `;
 
 export const Title = styled.h1`

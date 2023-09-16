@@ -23,7 +23,7 @@ export default function Products() {
 			<div className="px-12">
 				<CategoryBar selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 				{selectedCategory !== '' && (
-					<ul className="grid grid-cols-1 gap-1 mx-10 md:gird-cols-3 lg:grid-cols-4">
+					<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
 						{products &&
 							products.map(product => (
 								<ProductCard
@@ -39,7 +39,7 @@ export default function Products() {
 			<div className="px-12">
 				{selectedCategory === '' ||
 					(selectedCategory === null && (
-						<ul className="grid grid-cols-1 gap-1 mx-10 md:gird-cols-3 lg:grid-cols-4">
+						<ul className="grid lg:gap-1 xl:mx-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
 							{products &&
 								products.map(product => (
 									<li key={product.id} className="p-3 overflow-hidden rounded-lg cursor-pointer">

@@ -16,7 +16,7 @@ export default function CartPage() {
 	const hasProducts = products && products.length > 0;
 
 	return (
-		<div className="grid justify-center grid-cols-2 px-32 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
+		<div className="grid justify-center grid-cols-2 px-32 py-11 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
 			{error && <p>error</p>}
 
 			<ul>

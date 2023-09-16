@@ -60,7 +60,7 @@ const SingleSlide = () => {
 export default SingleSlide;
 
 const Container = styled.div`
-	padding: 0 0 5rem 0;
+	padding: 5rem 0 5rem 0;
 `;
 const SlidePage = styled.div`
 	height: max-content;
