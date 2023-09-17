@@ -7,7 +7,6 @@ import FooterDesign from './Components/FooterDesign';
 import NavBar from './Components/NavBar';
 import { AuthContextProvider } from './Context/AuthContext';
 import ModalProvider from './Context/ModalContext';
-import Responsive from './Responsive';
 
 const queryClient = new QueryClient();
 export default function App() {

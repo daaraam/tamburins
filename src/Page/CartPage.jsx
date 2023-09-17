@@ -3,6 +3,7 @@ import CartContents from '../Components/CartContents';
 import PriceCard from '../Components/PriceCard';
 import useCarts from '../Hooks/useCarts';
 import empty from '../Image/home-4.jpg';
+import { IsMobile } from '../Responsive';
 
 export default function CartPage() {
 	const {
@@ -15,15 +16,32 @@ export default function CartPage() {
 	if (isLoading) return <p>isLoading</p>;
 	const hasProducts = products && products.length > 0;
 
-	return (
-		<div className="grid justify-center grid-cols-2 px-32 py-11 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
-			{error && <p>error</p>}
+	const isPhone = IsMobile();
 
-			<ul>
-				<li className="flex px-11">{!hasProducts && <img src={empty} alt={empty} />}</li>
-				<li>{products && products.map(product => <CartContents key={product.id} product={product} />)}</li>
-			</ul>
-			<PriceCard totalPrice={totalPrice} SHIPPING={SHIPPING} />
-		</div>
+	return (
+		<>
+			{error && <p>error</p>}
+			{isPhone ? (
+				<div>
+					<ul>
+						<li>{!hasProducts && <img src={empty} alt={empty} />}</li>
+						<li>
+							{products && products.map(product => <CartContents key={product.id} product={product} />)}
+						</li>
+					</ul>
+					<PriceCard totalPrice={totalPrice} SHIPPING={SHIPPING} />
+				</div>
+			) : (
+				<div className="grid justify-center grid-cols-2 px-32 py-11 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
+					<ul>
+						<li className="flex px-11">{!hasProducts && <img src={empty} alt={empty} />}</li>
+						<li>
+							{products && products.map(product => <CartContents key={product.id} product={product} />)}
+						</li>
+					</ul>
+					<PriceCard totalPrice={totalPrice} SHIPPING={SHIPPING} />
+				</div>
+			)}
+		</>
 	);
 }

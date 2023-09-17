@@ -3,7 +3,7 @@ import { auth, createUserWithEmailAndPassword } from '../API/firebase';
 
 import { useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
-import MobileButton from '../Components/MoblieButton';
+import MobileButton from '../Components/MobileButton';
 import { useAuthContext } from '../Context/AuthContext';
 import { IsMobile } from '../Responsive';
 import { Input, InputDiv, MobileInput, MobilePage, Page, Title } from './Login';

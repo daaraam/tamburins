@@ -8,7 +8,7 @@ export default function PriceCard({ totalPrice, SHIPPING }) {
 	const navigate = useNavigate();
 
 	return (
-		<div className="w-full mt-11">
+		<div className="w-full px-3 mt-11">
 			<TitleLetter>결제내역</TitleLetter>
 			<Container>
 				<List>

@@ -5,16 +5,22 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Components/Button';
 import { useModal } from '../Context/ModalContext';
+import { IsMobile } from '../Responsive';
+import MobileButton from './MobileButton';
 import './ModalCSS.css';
 
 export default function CartModal({ title, url, cartHandler }) {
 	const navigate = useNavigate();
-
 	const { closeModal, modalIsOpen } = useModal();
-
+	const isPhone = IsMobile();
 	return (
 		<div>
-			<Button text={'Add to cart'} className="w-4/5 mt-10 text-white bg-black " onClick={cartHandler} />
+			{isPhone ? (
+				<MobileButton text={'Add to cart'} className="w-4/5 mt-10 text-white bg-black " onClick={cartHandler} />
+			) : (
+				<Button text={'Add to cart'} className="w-4/5 mt-10 text-white bg-black " onClick={cartHandler} />
+			)}
+
 			<Modal className={Modal} isOpen={modalIsOpen} onRequestClose={closeModal}>
 				<form className="modalBody">
 					<button id="modalCloseBtn" onClick={closeModal}>
