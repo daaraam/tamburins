@@ -12,7 +12,7 @@ export default function Button({ text, onClick, className }) {
 
 const Buttons = styled.button`
 	border: 1px solid black;
-	width: 30rem;
+	/* width: 30rem; */
 	padding: 0.5rem;
 	&:hover {
 		background: var(--color-brand);

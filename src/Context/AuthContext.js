@@ -16,9 +16,8 @@ export function AuthContextProvider({ children }) {
 	useEffect(() => {
 		userStateChange(user => {
 			setUser(user);
-			console.log(user);
 		});
-	}, []);
+	}, [user]);
 
 	return (
 		<AuthContext.Provider

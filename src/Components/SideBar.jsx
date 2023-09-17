@@ -9,15 +9,20 @@ export default function SideBar({ isOpen, setIsOpen }) {
 	const toggleSide = () => {
 		setIsOpen(false);
 	};
+
+	const handleClickInside = e => {
+		toggleSide();
+	};
+
 	useEffect(() => {
-		document.addEventListener('mousedown', handlerOut);
+		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => {
-			document.removeEventListener('mousedown', handlerOut);
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	});
 
-	const handlerOut = e => {
+	const handleClickOutside = e => {
 		if (!outside.current.contains(e.target)) {
 			toggleSide();
 		}
@@ -31,14 +36,17 @@ export default function SideBar({ isOpen, setIsOpen }) {
 				onKeyDown={toggleSide}
 				className="absolute w-full left-24 "
 			/>
-			<Link to="/products">
-				<GoProducts>제품 보기</GoProducts>
-				{user && <Menu onClick={logOut}>로그아웃</Menu>}
-				<Link to="/login">{!user && <Menu>로그인</Menu>}</Link>
-				<Link to="/map">
-					<Menu>매장보기</Menu>
+			<div onClick={handleClickInside}>
+				<Link to="/products">
+					<GoProducts>제품 보기</GoProducts>
+					{user && <Menu onClick={logOut}>로그아웃</Menu>}
+					<Link to="/login">{!user && <Menu>로그인</Menu>}</Link>
+					<Link to="/map">
+						<Menu>매장보기</Menu>
+					</Link>
+					<Link to="/new">{user && user.isAdmin && <Menu>제품 등록하기</Menu>}</Link>
 				</Link>
-			</Link>
+			</div>
 		</SideBarWrap>
 	);
 }

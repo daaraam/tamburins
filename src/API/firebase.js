@@ -31,7 +31,8 @@ provider.setCustomParameters({
 export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
 
 export function googleLogin() {
-	signInWithPopup(auth, provider).catch(console.error);
+	signInWithPopup(auth, provider) //
+		.catch(console.error);
 }
 
 export function logOut() {
