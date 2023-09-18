@@ -32,14 +32,14 @@ export default function CartContents({ product, product: { url, category, title,
 				<ul>
 					<li className="flex items-center w-full pb-3 gap-x-2">
 						<MobileImg src={url} className="flex w-32" alt="cartImg" />
-						<div className="flex flex-col w-64">
+						<div className="flex flex-col w-56">
 							<div className="flex items-center justify-between w-full gap-x-5 ">
 								<MobileTitleLetter>{title}</MobileTitleLetter>
 							</div>
 							<p className="text-xs">{category}</p>
-							<p className="text-xs">{options}</p>
+							<p className="text-xs ">{options}</p>
 							<select
-								className="w-10 border border-zinc-300"
+								className="w-16 border border-zinc-300"
 								value={quantitySelect}
 								onChange={handleQuantitySelect}
 							>

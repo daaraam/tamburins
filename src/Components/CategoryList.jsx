@@ -34,9 +34,10 @@ const Img = styled.img`
 `;
 
 const MobileImg = styled.img`
-	height: 4rem;
-	width: 4rem;
+	height: 5rem;
+	width: 5rem;
 	margin: 0.5rem;
+	padding: 0.5rem;
 	border-radius: 100%;
 	cursor: pointer;
 	&:hover {

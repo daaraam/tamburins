@@ -19,7 +19,7 @@ export default function CategoryBar({ selectedCategory, setSelectedCategory }) {
 	return (
 		<>
 			{isPhone ? (
-				<ul className="flex flex-row-reverse items-center justify-center m-5">
+				<ul className="flex flex-row-reverse items-center justify-center">
 					<section>
 						<CategoryList
 							onClick={() => {
