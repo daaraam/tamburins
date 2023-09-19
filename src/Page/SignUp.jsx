@@ -100,7 +100,7 @@ export default function SignUp() {
 	const isPhone = IsMobile();
 
 	return (
-		<Page>
+		<Page className="pb-16 pt-11">
 			<form onSubmit={SubmitHandler}>
 				<Title>Signup</Title>
 				<InputDiv>

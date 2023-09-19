@@ -61,6 +61,15 @@ export default function Login() {
 		emailLogin(email, password);
 	};
 
+	const GoogleSuccess = async () => {
+		try {
+			await googleLogin();
+			navigate('/products');
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<Page>
 			<form onSubmit={SubmitLoginHandler}>
@@ -84,7 +93,7 @@ export default function Login() {
 				<Link to="/signup">
 					<Button className="bg-white" text={'신규 회원가입'} />
 				</Link>
-				<Button className="my-3 bg-white" onClick={googleLogin} text={'구글 로그인'} />
+				<Button className="my-3 bg-white" onClick={GoogleSuccess} text={'구글 로그인'} />
 			</form>
 		</Page>
 	);

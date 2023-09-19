@@ -23,16 +23,18 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
 
-// 자동로그인 방지
 provider.setCustomParameters({
 	prompt: 'select_account',
 });
 
 export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
 
-export function googleLogin() {
-	signInWithPopup(auth, provider) //
-		.catch(console.error);
+export async function googleLogin() {
+	try {
+		await signInWithPopup(auth, provider);
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 export function logOut() {
