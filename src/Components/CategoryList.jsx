@@ -27,9 +27,9 @@ const Img = styled.img`
 	margin: 0.5rem;
 	border-radius: 100%;
 	cursor: pointer;
-	&:hover {
-		border: 1.5px solid black;
-		padding: 0.2rem;
+	&:active {
+		padding: 0.3rem;
+		background: var(--color-grad);
 	}
 `;
 
@@ -40,8 +40,8 @@ const MobileImg = styled.img`
 	padding: 0.5rem;
 	border-radius: 100%;
 	cursor: pointer;
-	&:hover {
-		border: 1.5px solid black;
-		padding: 0.2rem;
+	&:active {
+		padding: 0.3rem;
+		background: var(--color-grad);
 	}
 `;

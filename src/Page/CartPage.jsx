@@ -23,7 +23,7 @@ export default function CartPage() {
 			{error && <p>error</p>}
 			{isPhone ? (
 				<div>
-					<ul>
+					<ul className="w-full">
 						<li>{!hasProducts && <img src={empty} alt={empty} />}</li>
 						<li>
 							{products && products.map(product => <CartContents key={product.id} product={product} />)}

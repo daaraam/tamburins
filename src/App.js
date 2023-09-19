@@ -7,11 +7,14 @@ import FooterDesign from './Components/FooterDesign';
 import NavBar from './Components/NavBar';
 import { AuthContextProvider } from './Context/AuthContext';
 import ModalProvider from './Context/ModalContext';
+import ScrollToTop from './Util/ScrollToTop';
 
 const queryClient = new QueryClient();
+
 export default function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
+			<ScrollToTop /> {/* ScrollToTop을 여기에 추가 */}
 			<AuthContextProvider>
 				<ModalProvider>
 					<NavBar />

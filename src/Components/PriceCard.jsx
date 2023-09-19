@@ -43,7 +43,7 @@ const List = styled.li`
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid #c1c0c0;
-	padding: 1.5rem;
+	padding: 1rem;
 `;
 
 const Container = styled.div`

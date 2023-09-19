@@ -47,7 +47,7 @@ export default function NewProducts() {
 
 	const isPhone = IsMobile();
 	return (
-		<div className={isPhone ? 'grid' : 'flex items-center justify-center py-11 gap-x-10'}>
+		<div className={isPhone ? 'grid' : 'flex items-center justify-center py-16 gap-x-10'}>
 			<div className="flex flex-col mb-11">
 				{file ? (
 					<img className="h-96 w-96" src={URL.createObjectURL(file)} alt="product" />

@@ -20,7 +20,7 @@ export default function NavBar() {
 	return (
 		<>
 			{isPhone ? (
-				<Header className="flex items-center justify-between px-3 mx-3">
+				<Header className="flex items-center justify-between w-full px-5 mx-3 ">
 					<Link to="/">
 						<MobileImg src={logo} alt="logo" />
 					</Link>

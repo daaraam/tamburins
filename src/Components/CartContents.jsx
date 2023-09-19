@@ -30,7 +30,7 @@ export default function CartContents({ product, product: { url, category, title,
 		<>
 			{isPhone ? (
 				<ul>
-					<li className="flex items-center w-full pb-3 gap-x-2">
+					<li className="flex items-center pb-3 gap-x-2">
 						<MobileImg src={url} className="flex w-32" alt="cartImg" />
 						<div className="flex flex-col w-56">
 							<div className="flex items-center justify-between w-full gap-x-5 ">

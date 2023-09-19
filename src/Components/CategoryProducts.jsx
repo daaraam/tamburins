@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { numberWithCommas } from '../Util/numberWithCommas';
 import { TitleLetter } from './CartContents';
 
-export default function ProductCard({
+export default function CategoryProducts({
 	product,
 	selectedCategory,
 	product: { category, description, title, price, url, id },
 }) {
 	const navigate = useNavigate();
-
 	return (
 		<>
 			{category === selectedCategory && (

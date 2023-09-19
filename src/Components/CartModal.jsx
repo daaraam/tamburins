@@ -16,7 +16,7 @@ export default function CartModal({ title, url, cartHandler }) {
 		<div>
 			<Button
 				text={'Add to cart'}
-				className={isPhone ? 'w-72 mt-10 text-white bg-black' : 'w-96 mt-10 text-white bg-black '}
+				className={isPhone ? 'w-72 my-10 text-white bg-black' : 'w-96 mt-10 text-white bg-black '}
 				onClick={cartHandler}
 			/>
 			<Modal className={Modal} isOpen={modalIsOpen} onRequestClose={closeModal}>
