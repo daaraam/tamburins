@@ -32,7 +32,7 @@ export default function CartPage() {
 					<PriceCard totalPrice={totalPrice} SHIPPING={SHIPPING} />
 				</div>
 			) : (
-				<div className="grid justify-center grid-cols-2 px-32 py-11 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
+				<div className="grid justify-center grid-cols-2 px-32 py-20 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-col-2">
 					<ul>
 						<li className="flex px-11">{!hasProducts && <img src={empty} alt={empty} />}</li>
 						<li>
